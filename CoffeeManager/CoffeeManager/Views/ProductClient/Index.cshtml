@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CoffeeManager.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayoutProduct.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
+<script src="~/Scripts/bootstrap.min.js"></script>
+<h2 style="text-align: center; font-size: 50px; font-family: 'Roboto Slab', serif; margin-bottom: 25px;">Menu Sản Phẩm</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="div-img-client">
+                    <img src="@Url.Content(pro.Images)" width="200" height="200" style="border-radius: 15%;" />
+                </div>
+
+                <div class="div-des-client">
+                    <p style="font-size: 25px; font-family: 'Roboto Slab', serif;">
+                        @Html.DisplayFor(model => pro.name_product)
+                    </p>
+                    <p style="font-size: 22px; font-family: 'Roboto Slab', serif;">
+                        Giá: @Html.DisplayFor(model => pro.price) VNĐ
+                    </p>
+
+                    <a href="/ShoppingCart/AddtoCart/@pro.id_product">
+                        <img src="~/Content/Img/icons8-buy-48.png" />
+                    </a>   
+                </div>
+            </div>
+        }
+    </div>
+</div>

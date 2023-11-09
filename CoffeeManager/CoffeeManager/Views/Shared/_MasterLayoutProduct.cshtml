@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-image: url('../../content/img/—pngtree—cafe poster background_416615.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .div-top {
+            width: 100%;
+            height: 50px;
+        }
+
+        .div-left {
+            width: 20%;
+            height: 500px;
+            float: left;
+        }
+
+        .div-content {
+            width: 80%;
+            height: 500px;
+            float: left;
+        }
+
+        .div-footer {
+            width: 100%;
+            height: 100px;
+        }
+        .nav-link:hover {
+            text-decoration: none;
+            color: orangered;
+        }
+
+        .nav-link {
+            font-size: 20px;
+            font-family: 'Roboto Slab', serif;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-top">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 35px; font-family: 'Roboto Slab', serif;">QUÁN CF</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "ProductClient")">Trang Chủ</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        <li>
+                            <img src="@Url.Content("~/Content/Img/icons8-buy-50.png")" style="height:46px;width:46px" />
+                            @Html.Action("BagCart","ShoppingCart")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="div-left">
+            @{Html.RenderAction("Index", "Catogory"); }
+        </div>
+        <div class="div-content">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="div-footer"></div>
+</body>
+</html>

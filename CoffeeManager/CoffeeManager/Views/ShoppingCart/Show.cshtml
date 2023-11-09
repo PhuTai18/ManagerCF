@@ -1,0 +1,120 @@
+﻿@model CoffeeManager.Models.CartCK
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_LayoutShow.cshtml";
+}
+
+
+@if (Model != null)
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên Sản Phẩm
+                    </th>
+                    <th>
+                        Hình Ảnh
+                    </th>
+                    <th>
+                        Giá Tiền
+                    </th>
+                    <th>
+                        Số Lượng
+                    </th>
+                    <th>Thành Tiền </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+
+                    double total = Convert.ToDouble(item.shop_pro.price * item.shop_quan);
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.shop_pro.name_product)
+                        </td>
+                        <td>
+                            <img src="@Url.Content(item.shop_pro.Images)" alt="Alternate Text" width="80" height="80" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.shop_pro.price)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Update_Cart", "ShoppingCart"))
+                            {
+                                <input type="hidden" value="@item.shop_pro.id_product" name="Id_pro" />
+                                <input type="number" value="@item.shop_quan" name="Quantity" />
+                                <input type="submit" value="Update" />
+                            }
+
+
+                        </td>
+                        <td>
+                            @total VNĐ
+                        </td>
+                        <td>
+                            <a href="/ShoppingCart/Remove_Cart/@item.shop_pro.id_product">Remove</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="5" style="text-align:center">
+                        @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                        {
+                            <table style="border-collapse:separate; border-spacing:5px">
+                                <tr>
+                                    <td>Mã Khách Hàng: </td>
+                                    <td>
+                                        <input type="number" name="CodeCustomer" required />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Tổng Thanh Toán: </td>
+                                    <td>
+                                        <input type="text" name="TotalPrice" required />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Hình Thức: </td>
+                                    <td>
+                                        <select name="Type" class="form-select" required>
+                                            <option value="Mang Đi">Mang đi</option>
+                                            <option value="Tại Chỗ">Tại chỗ</option>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("Create", "Customers")" class="btn btn-success">Register</a>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="CheckOut" class="btn btn-success" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        }
+                    </td>
+
+                </tr>
+            </tfoot>
+            <tfoot>
+            <td colspan="5">Tổng Hóa Đơn: @Model.Total_bill() VNĐ </td>
+            </tfoot>
+
+        </table>
+ }
+        <div>
+            <a href="@Url.Action("Index", "ProductClient")">
+                <button type="button">Back to Home</button>
+            </a>
+        </div>
+

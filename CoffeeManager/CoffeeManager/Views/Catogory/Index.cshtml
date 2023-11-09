@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CoffeeManager.Models.Catogory>
+<style>
+    .fm-link:hover {
+        text-decoration: none;
+        color: orangered;
+    }
+
+    .fm-link {
+        font-size: 35px;
+        font-family: 'Roboto Slab', serif;
+        color: black;
+    }
+    .custom-container {
+        max-width: 400px;
+        background: rgb(255, 255, 255,0.8);
+        flex-grow: 1;
+        padding: 2px 2px 28px;
+        /*box-shadow: 0px 0px 17px 2px rgb(0, 0, 0);*/
+    }
+</style>
+@*<h3 style="text-align: center; font-size: 50px; font-family: 'Roboto Slab', serif; margin-bottom: 25px;">Chi Tiết</h3>*@
+@foreach (var catogory in Model)
+{
+    <div class="custom-container">
+        
+        <h3>
+            @Html.ActionLink(catogory.name_catogory, "Index", "ProductClient", new { category = catogory.id }, new { @class = "fm-link" })
+        </h3>
+    </div>
+}
+
+

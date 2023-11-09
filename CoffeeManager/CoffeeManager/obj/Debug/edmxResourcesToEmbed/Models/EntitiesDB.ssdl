@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Coffee_managerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name_area" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Catogory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name_catogory" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="int" Nullable="false" />
+    <Property Name="number_phone" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Order_Dentail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="price" Type="float" />
+    <Property Name="num" Type="int" />
+    <Property Name="price_total" Type="float" />
+    <Property Name="order_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="int" />
+    <Property Name="staff_if" Type="int" />
+    <Property Name="price_total" Type="float" />
+    <Property Name="tick" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsType" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id_product" />
+    </Key>
+    <Property Name="id_product" Type="int" Nullable="false" />
+    <Property Name="name_product" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="introduce_product" Type="nvarchar" MaxLength="50" />
+    <Property Name="id_catogory" Type="int" />
+    <Property Name="num" Type="int" />
+    <Property Name="Images" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="id_staff" />
+    </Key>
+    <Property Name="id_staff" Type="int" Nullable="false" />
+    <Property Name="name_staff" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="number_phone" Type="int" Nullable="false" />
+    <Property Name="address_live" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="gender" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="id_area" Type="int" />
+    <Property Name="work_shift" Type="nvarchar" MaxLength="20" />
+    <Property Name="password_staff" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Table_Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name_table" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="id_area" Type="int" />
+  </EntityType>
+  <Association Name="FK__Order_Den__order__6C190EBB">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="Order_Dentail" Type="Self.Order_Dentail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order_Dentail">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Den__produ__6B24EA82">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Order_Dentail" Type="Self.Order_Dentail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="Order_Dentail">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__customer__6383C8BA">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__staff_if__6477ECF3">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="id_staff" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="staff_if" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__id_cato__4BAC3F29">
+    <End Role="Catogory" Type="Self.Catogory" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catogory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="id_catogory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Staff__id_area__5FB337D6">
+    <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Table_Are__id_ar__5CD6CB2B">
+    <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+    <End Role="Table_Area" Type="Self.Table_Area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Table_Area">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Coffee_managerModelStoreContainer">
+    <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catogory" EntityType="Self.Catogory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_Dentail" EntityType="Self.Order_Dentail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_Area" EntityType="Self.Table_Area" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Order_Den__order__6C190EBB" Association="Self.FK__Order_Den__order__6C190EBB">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Order_Dentail" EntitySet="Order_Dentail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Den__produ__6B24EA82" Association="Self.FK__Order_Den__produ__6B24EA82">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Order_Dentail" EntitySet="Order_Dentail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__customer__6383C8BA" Association="Self.FK__Orders__customer__6383C8BA">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__staff_if__6477ECF3" Association="Self.FK__Orders__staff_if__6477ECF3">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__id_cato__4BAC3F29" Association="Self.FK__Product__id_cato__4BAC3F29">
+      <End Role="Catogory" EntitySet="Catogory" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Staff__id_area__5FB337D6" Association="Self.FK__Staff__id_area__5FB337D6">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Table_Are__id_ar__5CD6CB2B" Association="Self.FK__Table_Are__id_ar__5CD6CB2B">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Table_Area" EntitySet="Table_Area" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

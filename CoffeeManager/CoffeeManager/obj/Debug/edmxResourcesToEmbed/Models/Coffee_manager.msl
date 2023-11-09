@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Coffee_managerModelStoreContainer" CdmEntityContainer="Coffee_managerEntities">
+    <EntitySetMapping Name="Area">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_area" ColumnName="name_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Catogory">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Catogory">
+        <MappingFragment StoreEntitySet="Catogory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_catogory" ColumnName="name_catogory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="number_phone" ColumnName="number_phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Dentail">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Order_Dentail">
+        <MappingFragment StoreEntitySet="Order_Dentail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="price_total" ColumnName="price_total" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="staff_if" ColumnName="staff_if" />
+          <ScalarProperty Name="price_total" ColumnName="price_total" />
+          <ScalarProperty Name="tick" ColumnName="tick" />
+          <ScalarProperty Name="IsType" ColumnName="IsType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="name_product" ColumnName="name_product" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="introduce_product" ColumnName="introduce_product" />
+          <ScalarProperty Name="id_catogory" ColumnName="id_catogory" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="Images" ColumnName="Images" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="id_staff" ColumnName="id_staff" />
+          <ScalarProperty Name="name_staff" ColumnName="name_staff" />
+          <ScalarProperty Name="number_phone" ColumnName="number_phone" />
+          <ScalarProperty Name="address_live" ColumnName="address_live" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="work_shift" ColumnName="work_shift" />
+          <ScalarProperty Name="password_staff" ColumnName="password_staff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Area">
+      <EntityTypeMapping TypeName="Coffee_managerModel.Table_Area">
+        <MappingFragment StoreEntitySet="Table_Area">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_table" ColumnName="name_table" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
